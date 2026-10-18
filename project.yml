@@ -1,0 +1,48 @@
+name: RecallGuardian
+options:
+  bundleIdPrefix: ca.recallguardian
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    DEVELOPMENT_TEAM: VSGF6KPZCQ
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_EMIT_LOC_STRINGS: YES
+
+targets:
+  RecallGuardian:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - RecallGuardian
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ca.recallguardian.app
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait"
+        ENABLE_PREVIEWS: YES
+        TARGETED_DEVICE_FAMILY: "1,2"
+    info:
+      path: Supporting/Info.plist
+      properties:
+        CFBundleDisplayName: RecallGuardian
+        UIBackgroundModes: [fetch, remote-notification]
+        BGTaskSchedulerPermittedIdentifiers: [ca.recallguardian.app.refresh]
+        NSCameraUsageDescription: "Scan a product barcode to add it to your Guardian watchlist."
+        UILaunchScreen:
+          UIColorName: ""
+    entitlements:
+      path: Supporting/RecallGuardian.entitlements
+      properties:
+        aps-environment: development
+        com.apple.developer.usernotifications.time-sensitive: true
+        com.apple.developer.associated-domains:
+          - applinks:recallguardian.ca

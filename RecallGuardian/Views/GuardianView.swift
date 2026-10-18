@@ -7,6 +7,7 @@ import UserNotifications
 struct GuardianView: View {
     @Environment(Watchlist.self) private var watchlist
     @Environment(RecallStore.self) private var store
+    @Environment(AlertPreferences.self) private var prefs
     @State private var brandText = ""
     @State private var notifStatus: UNAuthorizationStatus = .notDetermined
 
@@ -48,25 +49,40 @@ struct GuardianView: View {
 
     @ViewBuilder
     private var alertsCard: some View {
-        let authorized = notifStatus == .authorized
-        HStack(spacing: 12) {
-            Image(systemName: authorized ? "bell.badge.fill" : "bell.slash")
-                .font(.system(size: 20))
-                .foregroundStyle(authorized ? Theme.severity(.standard) : Theme.muted)
-            VStack(alignment: .leading, spacing: 2) {
-                Text(authorized ? "Alerts are on" : "Turn on recall alerts")
-                    .font(.display(15, .bold))
-                    .foregroundStyle(Theme.ink)
-                Text(authorized ? "You'll be notified when a match appears." : "Get notified when something you watch is recalled.")
-                    .font(.system(size: 12))
-                    .foregroundStyle(Theme.muted)
+        @Bindable var prefs = prefs
+        VStack(alignment: .leading, spacing: 0) {
+            Toggle(isOn: Binding(
+                get: { prefs.enabled },
+                set: { setAlerts(on: $0) }
+            )) {
+                HStack(spacing: 11) {
+                    Image(systemName: prefs.enabled ? "bell.badge.fill" : "bell.slash")
+                        .font(.system(size: 19))
+                        .foregroundStyle(prefs.enabled ? Theme.severity(.standard) : Theme.muted)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Recall alerts").font(.display(15, .bold)).foregroundStyle(Theme.ink)
+                        Text(prefs.enabled ? "You'll be notified when a match appears." : "Get notified when something you watch is recalled.")
+                            .font(.system(size: 12)).foregroundStyle(Theme.muted)
+                    }
+                }
             }
-            Spacer()
-            if !authorized {
-                Button("Turn on") { enableAlerts() }
-                    .buttonStyle(.borderedProminent)
-                    .tint(Theme.brand)
-                    .font(.display(13, .semibold))
+            .tint(Theme.brand)
+
+            if prefs.enabled {
+                Divider().padding(.vertical, 12)
+                Text("ALERT ME ABOUT")
+                    .font(.display(11, .semibold)).tracking(1.1).foregroundStyle(Theme.muted)
+                    .padding(.bottom, 8)
+                Picker("Severity", selection: $prefs.threshold) {
+                    ForEach(SeverityThreshold.allCases) { Text($0.label).tag($0) }
+                }
+                .pickerStyle(.segmented)
+
+                if notifStatus == .denied {
+                    Text("Notifications are turned off for RecallGuardian in Settings. Matches will still appear here.")
+                        .font(.system(size: 12)).foregroundStyle(Theme.severity(.high))
+                        .padding(.top, 10)
+                }
             }
         }
         .padding(14)
@@ -118,7 +134,7 @@ struct GuardianView: View {
         VStack(alignment: .leading, spacing: 10) {
             sectionLabel("Categories to watch")
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 8) {
-                ForEach(Group.allCases) { group in
+                ForEach(RecallGroup.allCases) { group in
                     let on = watchlist.isWatching(group)
                     Button { watchlist.toggleCategory(group) } label: {
                         HStack {
@@ -183,16 +199,16 @@ struct GuardianView: View {
         brandText = ""
     }
 
-    private func enableAlerts() {
+    private func setAlerts(on: Bool) {
+        prefs.enabled = on
+        guard on else { return }
         Task {
             _ = await NotificationManager.requestAuthorization()
             notifStatus = await NotificationManager.authorizationStatus()
-            if notifStatus == .authorized {
-                // Don't blast the existing backlog — treat everything that already
-                // matches as seen, so only genuinely new recalls notify.
-                BackgroundRefresh.primeSeen(with: store.recalls, items: watchlist.items)
-                BackgroundRefresh.schedule()
-            }
+            // Don't blast the existing backlog — treat everything that already
+            // matches as seen, so only genuinely new recalls notify.
+            BackgroundRefresh.primeSeen(with: store.recalls, items: watchlist.items)
+            BackgroundRefresh.schedule()
         }
     }
 }

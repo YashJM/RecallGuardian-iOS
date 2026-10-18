@@ -21,7 +21,7 @@ enum Tier: String, Codable, Sendable {
 }
 
 /// The seven household groups used for filtering (mirrors the web app).
-enum Group: String, Codable, CaseIterable, Identifiable, Sendable {
+enum RecallGroup: String, Codable, CaseIterable, Identifiable, Sendable {
     case food, medicine, kids, vehicles, household, other
     var id: String { rawValue }
 
@@ -50,7 +50,7 @@ struct Recall: Identifiable, Hashable, Sendable {
     let lastUpdated: Date?
     let archived: Bool
     let sourceURL: URL?
-    let group: Group
+    let group: RecallGroup
     let tier: Tier
     let score: Double
 

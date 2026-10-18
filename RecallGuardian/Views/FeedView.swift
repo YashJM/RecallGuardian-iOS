@@ -3,7 +3,7 @@ import SwiftUI
 /// The ranked feed — the app's home. Fully usable with no account or setup.
 struct FeedView: View {
     @Environment(RecallStore.self) private var store
-    @State private var filter: Group? = nil   // nil == All
+    @State private var filter: RecallGroup? = nil   // nil == All
 
     private let homeLimit = 150
 
@@ -67,15 +67,15 @@ struct FeedView: View {
 }
 
 private struct FilterBar: View {
-    @Binding var filter: Group?
-    let counts: [Group: Int]
+    @Binding var filter: RecallGroup?
+    let counts: [RecallGroup: Int]
     let total: Int
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
                 Chip(title: "All", count: total, selected: filter == nil) { filter = nil }
-                ForEach(Group.allCases) { group in
+                ForEach(RecallGroup.allCases) { group in
                     let n = counts[group] ?? 0
                     if n > 0 {
                         Chip(title: group.label, count: n, selected: filter == group) {

@@ -1,0 +1,393 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		16629EC40F5AA5C1D9A07942 /* Recall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1716626F5389C44176777 /* Recall.swift */; };
+		1C8B51E8EFB9BF35A2F57CFD /* RecallRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02344B4AEA32EA6D8B1420D1 /* RecallRow.swift */; };
+		569ABF43DA1BB0C4685BE634 /* AlertPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A5206747DB46FBE8442887 /* AlertPreferences.swift */; };
+		6CE0736E0A3E80E1562A1F1F /* RecallGuardianApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD918E38274CFDAC36AE792 /* RecallGuardianApp.swift */; };
+		6EB718E4A4C96CD040BDBB39 /* RecallClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06581CD2D9BCB494BB07E67C /* RecallClassifier.swift */; };
+		733854F2F3E51948759E4308 /* RecallDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D66B0599FA2C0ADC0353AB0 /* RecallDetailView.swift */; };
+		775C91921CEC089F53E2B068 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB542912F1F08342BBDAB98B /* Theme.swift */; };
+		7B59AC762D232F39B9362217 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A33CBF929FBBAD9FED245B /* AppDelegate.swift */; };
+		830BA8C14F067EEE264A474A /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A97E0C91E059A376053785B /* FeedView.swift */; };
+		B20A86AD16C2A87E898A65F0 /* RecallStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035460651763DA1844DEBC26 /* RecallStore.swift */; };
+		B44334C66C14867118828456 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FD14B267AA5C94E9CB0C8 /* NotificationManager.swift */; };
+		C2026942F3682306808712FE /* BackgroundRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC3E62F6BDB5D3D737D4CF4 /* BackgroundRefresh.swift */; };
+		CADCC41266335705D7F87915 /* WatchMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B3E8B46F65C54D39F8556 /* WatchMatcher.swift */; };
+		D1646B3E212DEBE4E1443A07 /* Watchlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF14B9D24F416CDFC59909A /* Watchlist.swift */; };
+		EF2EB2F40929AC8D8DE133FD /* GuardianView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F575317C0C92DF11796CAF /* GuardianView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		02344B4AEA32EA6D8B1420D1 /* RecallRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecallRow.swift; sourceTree = "<group>"; };
+		035460651763DA1844DEBC26 /* RecallStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecallStore.swift; sourceTree = "<group>"; };
+		06581CD2D9BCB494BB07E67C /* RecallClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecallClassifier.swift; sourceTree = "<group>"; };
+		23A5206747DB46FBE8442887 /* AlertPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferences.swift; sourceTree = "<group>"; };
+		2A97E0C91E059A376053785B /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		56A33CBF929FBBAD9FED245B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5AC3E62F6BDB5D3D737D4CF4 /* BackgroundRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundRefresh.swift; sourceTree = "<group>"; };
+		5E9B3E8B46F65C54D39F8556 /* WatchMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchMatcher.swift; sourceTree = "<group>"; };
+		6CC1716626F5389C44176777 /* Recall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recall.swift; sourceTree = "<group>"; };
+		723FD14B267AA5C94E9CB0C8 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		7D66B0599FA2C0ADC0353AB0 /* RecallDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecallDetailView.swift; sourceTree = "<group>"; };
+		8BD8A7632EEDA58BD9AC3387 /* RecallGuardian.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = RecallGuardian.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DD918E38274CFDAC36AE792 /* RecallGuardianApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecallGuardianApp.swift; sourceTree = "<group>"; };
+		A0F575317C0C92DF11796CAF /* GuardianView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianView.swift; sourceTree = "<group>"; };
+		CBF14B9D24F416CDFC59909A /* Watchlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watchlist.swift; sourceTree = "<group>"; };
+		FB542912F1F08342BBDAB98B /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0800680099155AEB4F48D4CF = {
+			isa = PBXGroup;
+			children = (
+				4348832F16C1A36A6CF6CEEF /* RecallGuardian */,
+				84A1DC5F066FD24425139B70 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4348832F16C1A36A6CF6CEEF /* RecallGuardian */ = {
+			isa = PBXGroup;
+			children = (
+				56A33CBF929FBBAD9FED245B /* AppDelegate.swift */,
+				8DD918E38274CFDAC36AE792 /* RecallGuardianApp.swift */,
+				659C87B8B643D91071F4C1F7 /* Models */,
+				E2BE464A901883CFB68C439A /* Services */,
+				95106520A3DEEED3EF04CF6D /* Theme */,
+				72616C8F5EB36593B46186C6 /* Views */,
+			);
+			path = RecallGuardian;
+			sourceTree = "<group>";
+		};
+		659C87B8B643D91071F4C1F7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				23A5206747DB46FBE8442887 /* AlertPreferences.swift */,
+				6CC1716626F5389C44176777 /* Recall.swift */,
+				CBF14B9D24F416CDFC59909A /* Watchlist.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		72616C8F5EB36593B46186C6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2A97E0C91E059A376053785B /* FeedView.swift */,
+				A0F575317C0C92DF11796CAF /* GuardianView.swift */,
+				7D66B0599FA2C0ADC0353AB0 /* RecallDetailView.swift */,
+				02344B4AEA32EA6D8B1420D1 /* RecallRow.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		84A1DC5F066FD24425139B70 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8BD8A7632EEDA58BD9AC3387 /* RecallGuardian.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		95106520A3DEEED3EF04CF6D /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				FB542912F1F08342BBDAB98B /* Theme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		E2BE464A901883CFB68C439A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				5AC3E62F6BDB5D3D737D4CF4 /* BackgroundRefresh.swift */,
+				723FD14B267AA5C94E9CB0C8 /* NotificationManager.swift */,
+				06581CD2D9BCB494BB07E67C /* RecallClassifier.swift */,
+				035460651763DA1844DEBC26 /* RecallStore.swift */,
+				5E9B3E8B46F65C54D39F8556 /* WatchMatcher.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		91B7690F746B3B548AA150ED /* RecallGuardian */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CBCFBCE7D1D11DB30DC538DF /* Build configuration list for PBXNativeTarget "RecallGuardian" */;
+			buildPhases = (
+				C29F78C684D7E3F92A5D8482 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RecallGuardian;
+			packageProductDependencies = (
+			);
+			productName = RecallGuardian;
+			productReference = 8BD8A7632EEDA58BD9AC3387 /* RecallGuardian.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		080ED23A2C672AA8043294BB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					91B7690F746B3B548AA150ED = {
+						DevelopmentTeam = VSGF6KPZCQ;
+					};
+				};
+			};
+			buildConfigurationList = E68D53641567978C5BB3D8FD /* Build configuration list for PBXProject "RecallGuardian" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 0800680099155AEB4F48D4CF;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 84A1DC5F066FD24425139B70 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				91B7690F746B3B548AA150ED /* RecallGuardian */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C29F78C684D7E3F92A5D8482 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				569ABF43DA1BB0C4685BE634 /* AlertPreferences.swift in Sources */,
+				7B59AC762D232F39B9362217 /* AppDelegate.swift in Sources */,
+				C2026942F3682306808712FE /* BackgroundRefresh.swift in Sources */,
+				830BA8C14F067EEE264A474A /* FeedView.swift in Sources */,
+				EF2EB2F40929AC8D8DE133FD /* GuardianView.swift in Sources */,
+				B44334C66C14867118828456 /* NotificationManager.swift in Sources */,
+				16629EC40F5AA5C1D9A07942 /* Recall.swift in Sources */,
+				6EB718E4A4C96CD040BDBB39 /* RecallClassifier.swift in Sources */,
+				733854F2F3E51948759E4308 /* RecallDetailView.swift in Sources */,
+				6CE0736E0A3E80E1562A1F1F /* RecallGuardianApp.swift in Sources */,
+				1C8B51E8EFB9BF35A2F57CFD /* RecallRow.swift in Sources */,
+				B20A86AD16C2A87E898A65F0 /* RecallStore.swift in Sources */,
+				775C91921CEC089F53E2B068 /* Theme.swift in Sources */,
+				CADCC41266335705D7F87915 /* WatchMatcher.swift in Sources */,
+				D1646B3E212DEBE4E1443A07 /* Watchlist.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		5856E4D335998CF0D75910BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Supporting/RecallGuardian.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Supporting/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ca.recallguardian.app;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8373ED6997FEB2A120299E6C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = VSGF6KPZCQ;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		B1D48665D1BEECDB9F4E95B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = VSGF6KPZCQ;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		D1BE008AB2F0F321BCCEE8F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Supporting/RecallGuardian.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Supporting/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ca.recallguardian.app;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CBCFBCE7D1D11DB30DC538DF /* Build configuration list for PBXNativeTarget "RecallGuardian" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1BE008AB2F0F321BCCEE8F5 /* Debug */,
+				5856E4D335998CF0D75910BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E68D53641567978C5BB3D8FD /* Build configuration list for PBXProject "RecallGuardian" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1D48665D1BEECDB9F4E95B4 /* Debug */,
+				8373ED6997FEB2A120299E6C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 080ED23A2C672AA8043294BB /* Project object */;
+}

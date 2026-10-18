@@ -35,6 +35,8 @@ enum BackgroundRefresh {
 
     /// Fetch, match, notify. Also callable from the foreground (e.g. pull to refresh).
     static func runCheck() async {
+        let prefs = AlertPreferences.current()
+        guard prefs.enabled else { return }
         let items = loadWatchItems()
         guard !items.isEmpty else { return }
 
@@ -44,7 +46,8 @@ enum BackgroundRefresh {
         guard !recalls.isEmpty else { return }
 
         var seen = loadSeen()
-        for (recall, item) in WatchMatcher.matches(in: recalls, items: items) where !seen.contains(recall.nid) {
+        for (recall, item) in WatchMatcher.matches(in: recalls, items: items)
+        where !seen.contains(recall.nid) && prefs.threshold.allows(recall.tier) {
             NotificationManager.notify(recall: recall, matched: item)
             seen.insert(recall.nid)
         }

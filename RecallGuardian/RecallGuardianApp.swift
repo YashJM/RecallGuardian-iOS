@@ -5,12 +5,14 @@ struct RecallGuardianApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     @State private var store = RecallStore()
     @State private var watchlist = Watchlist()
+    @State private var prefs = AlertPreferences()
 
     var body: some Scene {
         WindowGroup {
             RootView()
                 .environment(store)
                 .environment(watchlist)
+                .environment(prefs)
         }
     }
 }

@@ -24,7 +24,7 @@ final class RecallStore {
         recalls.filter { !$0.archived }
     }
 
-    func counts(in list: [Recall]) -> [Group: Int] {
+    func counts(in list: [Recall]) -> [RecallGroup: Int] {
         Dictionary(grouping: list, by: \.group).mapValues(\.count)
     }
 

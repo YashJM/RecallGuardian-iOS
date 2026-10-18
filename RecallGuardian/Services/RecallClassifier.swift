@@ -59,9 +59,9 @@ enum RecallClassifier {
         needles.contains { text.contains($0) }
     }
 
-    // MARK: Group
+    // MARK: RecallGroup
 
-    static func group(category: String, org: String) -> Group {
+    static func group(category: String, org: String) -> RecallGroup {
         let c = category.lowercased()
         let o = org.lowercased()
         if has(c, kidWords) { return .kids } // child car seat is a TC recall but belongs here
@@ -78,7 +78,7 @@ enum RecallClassifier {
 
     // MARK: Tier
 
-    static func tier(category: String, org: String, group: Group) -> Tier {
+    static func tier(category: String, org: String, group: RecallGroup) -> Tier {
         // Professional medical devices: real, but low day-to-day household relevance.
         if isDevice(category: category, org: org) { return .standard }
         if group == .food || group == .medicine || group == .kids { return .critical }

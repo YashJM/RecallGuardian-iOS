@@ -7,13 +7,13 @@ struct WatchItem: Identifiable, Codable, Hashable, Sendable {
     enum Kind: String, Codable, Sendable { case brand, category }
     var id: UUID = UUID()
     var kind: Kind
-    var term: String          // brand text (lowercased match), or a Group.rawValue
+    var term: String          // brand text (lowercased match), or a RecallGroup.rawValue
     var label: String         // what we show the user
     var addedAt: Date = Date()
 }
 
 /// The on-device watchlist. Persisted as JSON in UserDefaults (swap for the App
-/// Group container once a widget is added).
+/// RecallGroup container once a widget is added).
 @Observable
 @MainActor
 final class Watchlist {
@@ -33,7 +33,7 @@ final class Watchlist {
         save()
     }
 
-    func toggleCategory(_ group: Group) {
+    func toggleCategory(_ group: RecallGroup) {
         if let existing = items.firstIndex(where: { $0.kind == .category && $0.term == group.rawValue }) {
             items.remove(at: existing)
         } else {
@@ -42,7 +42,7 @@ final class Watchlist {
         save()
     }
 
-    func isWatching(_ group: Group) -> Bool {
+    func isWatching(_ group: RecallGroup) -> Bool {
         items.contains { $0.kind == .category && $0.term == group.rawValue }
     }
 
