@@ -16,14 +16,25 @@ enum RecallClassifier {
         "confection", "snack", "condiment", "herb", "spice", "egg", "bread",
         "canned", "alcoholic", "beverage",
     ]
+    // Consumer health products — things in a household medicine cabinet.
     private static let medWords = [
-        "drug", "natural health", "medical device", "biologic", "vaccine",
-        "veterinary", "radiopharm", "homeopathic", "cardiovascular",
-        "anaesthesiology", "orthopaedic", "neurology", "haematology",
-        "radiology", "chemistry", "microbiology", "pathology", "immunology",
-        "dental", "ophthalmology", "surgery", "hospital", "gastroenterology",
-        "obstetrics", "gynaecology", "health product",
+        "drug", "natural health", "biologic", "vaccine",
+        "veterinary", "homeopathic", "health product",
     ]
+
+    // Professional / clinical medical devices — mostly hospital equipment, not
+    // household items. De-prioritized so they don't flood a consumer feed.
+    private static let deviceWords = [
+        "medical device", "cardiovascular", "anaesthesiology", "orthopaedic",
+        "neurology", "haematology", "radiology", "chemistry", "microbiology",
+        "pathology", "immunology", "dental", "ophthalmology", "surgery",
+        "hospital", "gastroenterology", "obstetrics", "gynaecology",
+        "radiopharm", "general hospital", "personal use",
+    ]
+
+    private static func isDevice(category: String, org: String) -> Bool {
+        org.lowercased().contains("medical devices") || has(category.lowercased(), deviceWords)
+    }
     private static let vehicleWords = [
         "car", "suv", "truck", "van", "motorcycle", "rv ", "rv trailer",
         "trailer", "motorhome", "bus", "a.t.v", "atv", "snowmobile", "minivan",
@@ -55,8 +66,9 @@ enum RecallClassifier {
         let o = org.lowercased()
         if has(c, kidWords) { return .kids } // child car seat is a TC recall but belongs here
         if o == "cfia" || has(c, foodWords) { return .food }
+        // Professional medical devices are not household items — bucket as "other".
+        if isDevice(category: category, org: org) { return .other }
         if has(c, medWords)
-            || o.contains("medical devices")
             || o.contains("drugs and health")
             || o.contains("marketed health") { return .medicine }
         if o == "tc" || has(c, vehicleWords) { return .vehicles }
@@ -67,6 +79,8 @@ enum RecallClassifier {
     // MARK: Tier
 
     static func tier(category: String, org: String, group: Group) -> Tier {
+        // Professional medical devices: real, but low day-to-day household relevance.
+        if isDevice(category: category, org: org) { return .standard }
         if group == .food || group == .medicine || group == .kids { return .critical }
         let c = category.lowercased()
         let o = org.lowercased()
