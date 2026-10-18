@@ -20,24 +20,71 @@ To get a running app:
 3. Drag the `RecallGuardian/` source folder (Models, Services, Views, Theme,
    `RecallGuardianApp.swift`) into the project ("Copy items if needed" off —
    they're already here).
-4. **App Transport Security** is fine: the feed is HTTPS. No extra entitlements
-   for v1.
+4. **App Transport Security** is fine: the feed is HTTPS.
 5. Build & run.
+
+## App ID & capabilities
+
+**Bundle ID: `ca.recallguardian.app`** (permanent — don't change it after shipping).
+
+Register via Xcode (easiest): set the Bundle ID in *Signing & Capabilities*, sign
+in with your Apple ID, turn on *Automatically manage signing*, and add capabilities
+— Xcode registers the App ID on the portal for you.
+
+Capabilities, by phase (all editable later):
+
+| Capability | When | Notes |
+| --- | --- | --- |
+| **Background Modes → Background fetch** | V2 (now) | Lets the Guardian check for new recalls in the background. Writes `UIBackgroundModes`. |
+| **Push Notifications** | V2.1 | Only if you add APNs for lower-latency alerts. Create an **APNs Auth Key** (.p8) under *Keys* for the sender. The app delegate already has the token hooks stubbed. |
+| **App Groups** (`group.ca.recallguardian.app`) | V2/V3 | Share the watchlist with a home-screen widget. Move `Watchlist`/`BackgroundRefresh` storage from `UserDefaults.standard` to the group container. |
+| **Associated Domains** (`applinks:recallguardian.ca`) | V3 | Universal Links. Host `AppSiteAssociation/apple-app-site-association` at `https://recallguardian.ca/.well-known/` and replace `TEAMID` with your Team ID. |
+
+Info.plist keys to add (Target → *Info*, or your `Info.plist`):
+
+```xml
+<key>BGTaskSchedulerPermittedIdentifiers</key>
+<array><string>ca.recallguardian.app.refresh</string></array>
+<key>NSCameraUsageDescription</key>
+<string>Scan a product barcode to add it to your Guardian watchlist.</string>
+```
+(`UIBackgroundModes` → `fetch` is written when you enable the Background fetch capability.)
+
+## V2 — the Guardian (on-device, no backend)
+
+Already implemented in source:
+
+- `Models/Watchlist.swift` — the household watchlist (brands + categories), stored on-device.
+- `Services/WatchMatcher.swift` — pure local matching of recalls to the watchlist.
+- `Services/NotificationManager.swift` — permission + local notifications (time-sensitive for critical).
+- `Services/BackgroundRefresh.swift` — `BGTaskScheduler` job: fetch → match → notify new matches (tracks seen NIDs so it never re-alerts the backlog).
+- `AppDelegate.swift` — registers the background task, presents foreground alerts, stubs APNs token hooks.
+- `Views/GuardianView.swift` — add brands, toggle categories, turn on alerts, see current matches.
+
+The whole V2 loop runs with **no server**: the public feed is matched on the phone,
+and the watchlist never leaves the device. APNs (V2.1) is optional and only improves
+delivery latency.
 
 ## Source layout
 
 ```
 RecallGuardian/
-├── RecallGuardianApp.swift   App entry + tab bar (Recalls · Guardian)
+├── RecallGuardianApp.swift   App entry + tab bar + scene-phase scheduling
+├── AppDelegate.swift         Background task registration + notification delegate
 ├── Models/
-│   └── Recall.swift          Recall, RawRecall (feed decoding), Tier, Group
+│   ├── Recall.swift          Recall, RawRecall (feed decoding), Tier, Group
+│   └── Watchlist.swift       On-device watchlist (brands + categories)
 ├── Services/
 │   ├── RecallClassifier.swift  Grouping + severity + ranking  ← shared contract
-│   └── RecallStore.swift       Fetch, decode, normalize, rank (@Observable)
+│   ├── RecallStore.swift       Fetch, decode, normalize, rank (@Observable)
+│   ├── WatchMatcher.swift      Pure local recall ↔ watchlist matching
+│   ├── NotificationManager.swift  Permission + local notifications
+│   └── BackgroundRefresh.swift    BGTaskScheduler: fetch → match → notify
 ├── Views/
 │   ├── FeedView.swift          Ranked feed + category filter
 │   ├── RecallRow.swift         The recall card (severity stripe)
-│   └── RecallDetailView.swift  Full recall + official source link
+│   ├── RecallDetailView.swift  Full recall + official source link
+│   └── GuardianView.swift      Watchlist + alerts + current matches
 └── Theme/
     └── Theme.swift           Colour tokens mirroring the web globals.css
 ```

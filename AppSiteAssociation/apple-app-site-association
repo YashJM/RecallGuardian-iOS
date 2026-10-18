@@ -1,0 +1,12 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["TEAMID.ca.recallguardian.app"],
+        "components": [
+          { "/": "/recall/*", "comment": "Open any recall page in the app" }
+        ]
+      }
+    ]
+  }
+}

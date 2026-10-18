@@ -2,7 +2,7 @@ import SwiftUI
 
 /// The ranked feed — the app's home. Fully usable with no account or setup.
 struct FeedView: View {
-    @State private var store = RecallStore()
+    @Environment(RecallStore.self) private var store
     @State private var filter: Group? = nil   // nil == All
 
     private let homeLimit = 150

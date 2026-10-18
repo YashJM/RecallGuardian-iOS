@@ -2,14 +2,22 @@ import SwiftUI
 
 @main
 struct RecallGuardianApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
+    @State private var store = RecallStore()
+    @State private var watchlist = Watchlist()
+
     var body: some Scene {
         WindowGroup {
             RootView()
+                .environment(store)
+                .environment(watchlist)
         }
     }
 }
 
 struct RootView: View {
+    @Environment(\.scenePhase) private var scenePhase
+
     var body: some View {
         TabView {
             FeedView()
@@ -19,30 +27,9 @@ struct RootView: View {
                 .tabItem { Label("Guardian", systemImage: "shield") }
         }
         .tint(Theme.brand)
-    }
-}
-
-/// V2 placeholder — the on-device household watchlist. Kept intentionally simple
-/// until accounts + matching land (see the roadmap in the concept canvas).
-struct GuardianView: View {
-    var body: some View {
-        NavigationStack {
-            VStack(spacing: 16) {
-                Image(systemName: "shield.lefthalf.filled")
-                    .font(.system(size: 44))
-                    .foregroundStyle(Theme.brand)
-                Text("Your Guardian")
-                    .font(.display(22, .bold))
-                    .foregroundStyle(Theme.ink)
-                Text("Soon: tell RecallGuardian what your household owns — your car, baby gear, the brands in your cabinet — and get notified only when a recall matches. It stays on this device.")
-                    .font(.system(size: 15))
-                    .foregroundStyle(Theme.muted)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 32)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Theme.paper)
-            .navigationTitle("Guardian")
+        .onChange(of: scenePhase) { _, phase in
+            // Line up the next background check whenever we leave the foreground.
+            if phase == .background { BackgroundRefresh.schedule() }
         }
     }
 }
