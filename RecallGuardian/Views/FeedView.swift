@@ -4,6 +4,7 @@ import SwiftUI
 struct FeedView: View {
     @Environment(RecallStore.self) private var store
     @State private var filter: RecallGroup? = nil   // nil == All
+    @State private var path: [Recall] = []
 
     private let homeLimit = 150
 
@@ -16,7 +17,7 @@ struct FeedView: View {
     }
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             Group {
                 switch store.state {
                 case .loading, .idle:
@@ -33,7 +34,10 @@ struct FeedView: View {
             .navigationBarTitleDisplayMode(.large)
         }
         .tint(Theme.brand)
-        .task { await store.load() }
+        .task {
+            await store.load()
+            if Snapshot.openDetail, let first = store.feed.first { path = [first] }
+        }
     }
 
     private var feedList: some View {
