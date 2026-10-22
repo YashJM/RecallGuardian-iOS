@@ -10,6 +10,7 @@
 		16629EC40F5AA5C1D9A07942 /* Recall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1716626F5389C44176777 /* Recall.swift */; };
 		1C8B51E8EFB9BF35A2F57CFD /* RecallRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02344B4AEA32EA6D8B1420D1 /* RecallRow.swift */; };
 		20E25A01952695B492D4D448 /* UpdateChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E4207B871D097DB2926D75 /* UpdateChecker.swift */; };
+		26446541645F4742D66043EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25CE9EAC52586D3C993364E0 /* Assets.xcassets */; };
 		2717AB504D7E2C6D22496E56 /* UpdateSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1E5A0D346A40DF14D4B07A /* UpdateSheet.swift */; };
 		3E50815DE77A0DC1F5A3A7F7 /* RecallInsights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1B1D91BE4521ECAE2FB2DF /* RecallInsights.swift */; };
 		569ABF43DA1BB0C4685BE634 /* AlertPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A5206747DB46FBE8442887 /* AlertPreferences.swift */; };
@@ -33,6 +34,7 @@
 		035460651763DA1844DEBC26 /* RecallStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecallStore.swift; sourceTree = "<group>"; };
 		06581CD2D9BCB494BB07E67C /* RecallClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecallClassifier.swift; sourceTree = "<group>"; };
 		23A5206747DB46FBE8442887 /* AlertPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferences.swift; sourceTree = "<group>"; };
+		25CE9EAC52586D3C993364E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A97E0C91E059A376053785B /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		41E4207B871D097DB2926D75 /* UpdateChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChecker.swift; sourceTree = "<group>"; };
 		536B09E3A71C079FC3D2261C /* RecallExtras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecallExtras.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				56A33CBF929FBBAD9FED245B /* AppDelegate.swift */,
+				25CE9EAC52586D3C993364E0 /* Assets.xcassets */,
 				8DD918E38274CFDAC36AE792 /* RecallGuardianApp.swift */,
 				659C87B8B643D91071F4C1F7 /* Models */,
 				E2BE464A901883CFB68C439A /* Services */,
@@ -134,6 +137,7 @@
 			buildConfigurationList = CBCFBCE7D1D11DB30DC538DF /* Build configuration list for PBXNativeTarget "RecallGuardian" */;
 			buildPhases = (
 				C29F78C684D7E3F92A5D8482 /* Sources */,
+				95086106AF6CFB0149B2C551 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -178,6 +182,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		95086106AF6CFB0149B2C551 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26446541645F4742D66043EB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C29F78C684D7E3F92A5D8482 /* Sources */ = {
