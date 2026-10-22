@@ -41,7 +41,8 @@ targets:
         BGTaskSchedulerPermittedIdentifiers: [ca.recallguardian.app.refresh]
         NSCameraUsageDescription: "Scan a product barcode to add it to your Guardian watchlist."
         UILaunchScreen:
-          UIColorName: ""
+          UIColorName: LaunchBackground
+          UIImageName: LaunchLogo
     entitlements:
       path: Supporting/RecallGuardian.entitlements
       properties:
