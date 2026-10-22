@@ -11,6 +11,7 @@ struct GuardianView: View {
     @Environment(UpdateChecker.self) private var updates
     @State private var brandText = ""
     @State private var notifStatus: UNAuthorizationStatus = .notDetermined
+    @State private var showScanner = false
 
     private var matches: [(recall: Recall, item: WatchItem)] {
         WatchMatcher.matches(in: store.feed, items: watchlist.items)
@@ -36,6 +37,7 @@ struct GuardianView: View {
             .navigationTitle("Guardian")
             .navigationDestination(for: Recall.self) { RecallDetailView(recall: $0) }
         }
+        .sheet(isPresented: $showScanner) { ScanToAddView() }
         .tint(Theme.brand)
         .task {
             await store.load()
@@ -112,6 +114,15 @@ struct GuardianView: View {
                         .foregroundStyle(Theme.paper)
                 }
                 .disabled(brandText.trimmingCharacters(in: .whitespaces).count < 2)
+            }
+            Button { showScanner = true } label: {
+                HStack(spacing: 7) {
+                    Image(systemName: "barcode.viewfinder").font(.system(size: 15, weight: .semibold))
+                    Text("Scan a product").font(.display(14, .semibold))
+                }
+                .foregroundStyle(Theme.brand)
+                .frame(maxWidth: .infinity).padding(.vertical, 10)
+                .overlay(RoundedRectangle(cornerRadius: 9).stroke(Theme.brand.opacity(0.5), lineWidth: 1))
             }
             if watchlist.brands.isEmpty {
                 Text("e.g. your car make, a stroller brand, the meds in your cabinet.")

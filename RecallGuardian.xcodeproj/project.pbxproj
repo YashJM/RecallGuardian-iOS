@@ -12,7 +12,9 @@
 		20E25A01952695B492D4D448 /* UpdateChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E4207B871D097DB2926D75 /* UpdateChecker.swift */; };
 		26446541645F4742D66043EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25CE9EAC52586D3C993364E0 /* Assets.xcassets */; };
 		2717AB504D7E2C6D22496E56 /* UpdateSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1E5A0D346A40DF14D4B07A /* UpdateSheet.swift */; };
+		2E05F8A2E20248EE4C3645D8 /* ScanToAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B75E51487652C03EF6F964 /* ScanToAddView.swift */; };
 		3E50815DE77A0DC1F5A3A7F7 /* RecallInsights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1B1D91BE4521ECAE2FB2DF /* RecallInsights.swift */; };
+		564288753459A1C5AECCBFB6 /* ProductLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2979029020F9AF63A621B99 /* ProductLookup.swift */; };
 		569ABF43DA1BB0C4685BE634 /* AlertPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A5206747DB46FBE8442887 /* AlertPreferences.swift */; };
 		6CE0736E0A3E80E1562A1F1F /* RecallGuardianApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD918E38274CFDAC36AE792 /* RecallGuardianApp.swift */; };
 		6EB718E4A4C96CD040BDBB39 /* RecallClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06581CD2D9BCB494BB07E67C /* RecallClassifier.swift */; };
@@ -22,6 +24,7 @@
 		830BA8C14F067EEE264A474A /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A97E0C91E059A376053785B /* FeedView.swift */; };
 		B20A86AD16C2A87E898A65F0 /* RecallStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035460651763DA1844DEBC26 /* RecallStore.swift */; };
 		B44334C66C14867118828456 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723FD14B267AA5C94E9CB0C8 /* NotificationManager.swift */; };
+		B6C72441256839B799DB261F /* BarcodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66684E1CAE100052A3BB9C72 /* BarcodeScannerView.swift */; };
 		C2026942F3682306808712FE /* BackgroundRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC3E62F6BDB5D3D737D4CF4 /* BackgroundRefresh.swift */; };
 		CADCC41266335705D7F87915 /* WatchMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B3E8B46F65C54D39F8556 /* WatchMatcher.swift */; };
 		D1646B3E212DEBE4E1443A07 /* Watchlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF14B9D24F416CDFC59909A /* Watchlist.swift */; };
@@ -38,12 +41,14 @@
 		23A5206747DB46FBE8442887 /* AlertPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferences.swift; sourceTree = "<group>"; };
 		25CE9EAC52586D3C993364E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A97E0C91E059A376053785B /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		32B75E51487652C03EF6F964 /* ScanToAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanToAddView.swift; sourceTree = "<group>"; };
 		41E4207B871D097DB2926D75 /* UpdateChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChecker.swift; sourceTree = "<group>"; };
 		536B09E3A71C079FC3D2261C /* RecallExtras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecallExtras.swift; sourceTree = "<group>"; };
 		56A33CBF929FBBAD9FED245B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AC3E62F6BDB5D3D737D4CF4 /* BackgroundRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundRefresh.swift; sourceTree = "<group>"; };
 		5E1B1D91BE4521ECAE2FB2DF /* RecallInsights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecallInsights.swift; sourceTree = "<group>"; };
 		5E9B3E8B46F65C54D39F8556 /* WatchMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchMatcher.swift; sourceTree = "<group>"; };
+		66684E1CAE100052A3BB9C72 /* BarcodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerView.swift; sourceTree = "<group>"; };
 		6CC1716626F5389C44176777 /* Recall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recall.swift; sourceTree = "<group>"; };
 		723FD14B267AA5C94E9CB0C8 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		7D66B0599FA2C0ADC0353AB0 /* RecallDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecallDetailView.swift; sourceTree = "<group>"; };
@@ -52,6 +57,7 @@
 		90622154B19FACDF02715B11 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		A0F575317C0C92DF11796CAF /* GuardianView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianView.swift; sourceTree = "<group>"; };
 		CBF14B9D24F416CDFC59909A /* Watchlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watchlist.swift; sourceTree = "<group>"; };
+		D2979029020F9AF63A621B99 /* ProductLookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLookup.swift; sourceTree = "<group>"; };
 		EB1E5A0D346A40DF14D4B07A /* UpdateSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSheet.swift; sourceTree = "<group>"; };
 		F618C8670BE69A4AC00D7BE2 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		FB542912F1F08342BBDAB98B /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -93,11 +99,13 @@
 		72616C8F5EB36593B46186C6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				66684E1CAE100052A3BB9C72 /* BarcodeScannerView.swift */,
 				2A97E0C91E059A376053785B /* FeedView.swift */,
 				A0F575317C0C92DF11796CAF /* GuardianView.swift */,
 				90622154B19FACDF02715B11 /* OnboardingView.swift */,
 				7D66B0599FA2C0ADC0353AB0 /* RecallDetailView.swift */,
 				02344B4AEA32EA6D8B1420D1 /* RecallRow.swift */,
+				32B75E51487652C03EF6F964 /* ScanToAddView.swift */,
 				EB1E5A0D346A40DF14D4B07A /* UpdateSheet.swift */,
 			);
 			path = Views;
@@ -125,6 +133,7 @@
 				F618C8670BE69A4AC00D7BE2 /* AppRouter.swift */,
 				5AC3E62F6BDB5D3D737D4CF4 /* BackgroundRefresh.swift */,
 				723FD14B267AA5C94E9CB0C8 /* NotificationManager.swift */,
+				D2979029020F9AF63A621B99 /* ProductLookup.swift */,
 				06581CD2D9BCB494BB07E67C /* RecallClassifier.swift */,
 				536B09E3A71C079FC3D2261C /* RecallExtras.swift */,
 				5E1B1D91BE4521ECAE2FB2DF /* RecallInsights.swift */,
@@ -209,10 +218,12 @@
 				7B59AC762D232F39B9362217 /* AppDelegate.swift in Sources */,
 				DAA76EB84EFF439A9C0BF042 /* AppRouter.swift in Sources */,
 				C2026942F3682306808712FE /* BackgroundRefresh.swift in Sources */,
+				B6C72441256839B799DB261F /* BarcodeScannerView.swift in Sources */,
 				830BA8C14F067EEE264A474A /* FeedView.swift in Sources */,
 				EF2EB2F40929AC8D8DE133FD /* GuardianView.swift in Sources */,
 				B44334C66C14867118828456 /* NotificationManager.swift in Sources */,
 				F310A3EFF73356F917702290 /* OnboardingView.swift in Sources */,
+				564288753459A1C5AECCBFB6 /* ProductLookup.swift in Sources */,
 				16629EC40F5AA5C1D9A07942 /* Recall.swift in Sources */,
 				6EB718E4A4C96CD040BDBB39 /* RecallClassifier.swift in Sources */,
 				733854F2F3E51948759E4308 /* RecallDetailView.swift in Sources */,
@@ -221,6 +232,7 @@
 				3E50815DE77A0DC1F5A3A7F7 /* RecallInsights.swift in Sources */,
 				1C8B51E8EFB9BF35A2F57CFD /* RecallRow.swift in Sources */,
 				B20A86AD16C2A87E898A65F0 /* RecallStore.swift in Sources */,
+				2E05F8A2E20248EE4C3645D8 /* ScanToAddView.swift in Sources */,
 				775C91921CEC089F53E2B068 /* Theme.swift in Sources */,
 				20E25A01952695B492D4D448 /* UpdateChecker.swift in Sources */,
 				2717AB504D7E2C6D22496E56 /* UpdateSheet.swift in Sources */,
