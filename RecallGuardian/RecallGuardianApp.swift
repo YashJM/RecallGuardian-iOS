@@ -15,6 +15,7 @@ struct RecallGuardianApp: App {
                 .environment(watchlist)
                 .environment(prefs)
                 .environment(updates)
+                .environment(AppRouter.shared)
         }
     }
 }
@@ -24,11 +25,13 @@ struct RootView: View {
     @Environment(Watchlist.self) private var watchlist
     @Environment(AlertPreferences.self) private var prefs
     @Environment(UpdateChecker.self) private var updates
+    @Environment(AppRouter.self) private var router
     @Environment(\.openURL) private var openURL
-    @State private var tab = Snapshot.tab
+    @State private var showOnboarding = !UserDefaults.standard.bool(forKey: "onboarded")
 
     var body: some View {
-        TabView(selection: $tab) {
+        @Bindable var router = router
+        return TabView(selection: $router.tab) {
             FeedView()
                 .tag(0)
                 .tabItem { Label("Recalls", systemImage: "list.bullet.rectangle") }
@@ -39,6 +42,12 @@ struct RootView: View {
         }
         .tint(Theme.brand)
         .preferredColorScheme(.light)
+        .fullScreenCover(isPresented: $showOnboarding) {
+            OnboardingView {
+                UserDefaults.standard.set(true, forKey: "onboarded")
+                showOnboarding = false
+            }
+        }
         .onChange(of: scenePhase) { _, phase in
             // Line up the next background check whenever we leave the foreground.
             if phase == .background { BackgroundRefresh.schedule() }

@@ -22,6 +22,15 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
         [.banner, .sound, .list]
     }
 
+    // Tapping a recall notification opens that exact recall.
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse
+    ) async {
+        guard let nid = response.notification.request.content.userInfo["nid"] as? String else { return }
+        await MainActor.run { AppRouter.shared.openRecall(nid: nid) }
+    }
+
     // MARK: Remote notifications (APNs) — wired for later; no-ops until push is enabled.
 
     func application(

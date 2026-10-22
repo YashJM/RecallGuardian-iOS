@@ -25,8 +25,10 @@
 		C2026942F3682306808712FE /* BackgroundRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC3E62F6BDB5D3D737D4CF4 /* BackgroundRefresh.swift */; };
 		CADCC41266335705D7F87915 /* WatchMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B3E8B46F65C54D39F8556 /* WatchMatcher.swift */; };
 		D1646B3E212DEBE4E1443A07 /* Watchlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF14B9D24F416CDFC59909A /* Watchlist.swift */; };
+		DAA76EB84EFF439A9C0BF042 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F618C8670BE69A4AC00D7BE2 /* AppRouter.swift */; };
 		DDD2F6C46C54BD62E1CD5D92 /* RecallExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536B09E3A71C079FC3D2261C /* RecallExtras.swift */; };
 		EF2EB2F40929AC8D8DE133FD /* GuardianView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F575317C0C92DF11796CAF /* GuardianView.swift */; };
+		F310A3EFF73356F917702290 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90622154B19FACDF02715B11 /* OnboardingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,9 +49,11 @@
 		7D66B0599FA2C0ADC0353AB0 /* RecallDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecallDetailView.swift; sourceTree = "<group>"; };
 		8BD8A7632EEDA58BD9AC3387 /* RecallGuardian.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = RecallGuardian.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD918E38274CFDAC36AE792 /* RecallGuardianApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecallGuardianApp.swift; sourceTree = "<group>"; };
+		90622154B19FACDF02715B11 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		A0F575317C0C92DF11796CAF /* GuardianView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianView.swift; sourceTree = "<group>"; };
 		CBF14B9D24F416CDFC59909A /* Watchlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watchlist.swift; sourceTree = "<group>"; };
 		EB1E5A0D346A40DF14D4B07A /* UpdateSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSheet.swift; sourceTree = "<group>"; };
+		F618C8670BE69A4AC00D7BE2 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		FB542912F1F08342BBDAB98B /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,6 +95,7 @@
 			children = (
 				2A97E0C91E059A376053785B /* FeedView.swift */,
 				A0F575317C0C92DF11796CAF /* GuardianView.swift */,
+				90622154B19FACDF02715B11 /* OnboardingView.swift */,
 				7D66B0599FA2C0ADC0353AB0 /* RecallDetailView.swift */,
 				02344B4AEA32EA6D8B1420D1 /* RecallRow.swift */,
 				EB1E5A0D346A40DF14D4B07A /* UpdateSheet.swift */,
@@ -117,6 +122,7 @@
 		E2BE464A901883CFB68C439A /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				F618C8670BE69A4AC00D7BE2 /* AppRouter.swift */,
 				5AC3E62F6BDB5D3D737D4CF4 /* BackgroundRefresh.swift */,
 				723FD14B267AA5C94E9CB0C8 /* NotificationManager.swift */,
 				06581CD2D9BCB494BB07E67C /* RecallClassifier.swift */,
@@ -201,10 +207,12 @@
 			files = (
 				569ABF43DA1BB0C4685BE634 /* AlertPreferences.swift in Sources */,
 				7B59AC762D232F39B9362217 /* AppDelegate.swift in Sources */,
+				DAA76EB84EFF439A9C0BF042 /* AppRouter.swift in Sources */,
 				C2026942F3682306808712FE /* BackgroundRefresh.swift in Sources */,
 				830BA8C14F067EEE264A474A /* FeedView.swift in Sources */,
 				EF2EB2F40929AC8D8DE133FD /* GuardianView.swift in Sources */,
 				B44334C66C14867118828456 /* NotificationManager.swift in Sources */,
+				F310A3EFF73356F917702290 /* OnboardingView.swift in Sources */,
 				16629EC40F5AA5C1D9A07942 /* Recall.swift in Sources */,
 				6EB718E4A4C96CD040BDBB39 /* RecallClassifier.swift in Sources */,
 				733854F2F3E51948759E4308 /* RecallDetailView.swift in Sources */,

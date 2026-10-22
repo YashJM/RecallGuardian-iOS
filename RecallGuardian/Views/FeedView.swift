@@ -4,9 +4,9 @@ import SwiftUI
 /// everything, with one-tap ingredient checks. Mirrors the web homepage.
 struct FeedView: View {
     @Environment(RecallStore.self) private var store
+    @Environment(AppRouter.self) private var router
     @State private var filter: RecallGroup? = .food   // nil == All
     @State private var query = ""
-    @State private var path: [Recall] = []
 
     private let limit = 200
     private let quick = ["Milk", "Eggs", "Cheese", "Peanut", "Wheat", "Beef", "Chicken", "Romaine"]
@@ -30,7 +30,8 @@ struct FeedView: View {
     private func count(_ g: RecallGroup) -> Int { base.filter { $0.group == g }.count }
 
     var body: some View {
-        NavigationStack(path: $path) {
+        @Bindable var router = router
+        return NavigationStack(path: $router.feedPath) {
             Group {
                 switch store.state {
                 case .loading, .idle:
@@ -49,8 +50,20 @@ struct FeedView: View {
         .tint(Theme.brand)
         .task {
             await store.load()
-            if Snapshot.openDetail, let first = store.feed.first { path = [first] }
+            // Simulate a notification deep-link through the real routing path.
+            if Snapshot.openDetail, router.pendingNID == nil { router.pendingNID = store.feed.first?.nid }
+            resolvePending()
         }
+        .onChange(of: router.pendingNID) { _, _ in resolvePending() }
+        .onChange(of: store.state) { _, _ in resolvePending() }
+    }
+
+    /// Push the recall a tapped notification asked for, once the feed has loaded.
+    private func resolvePending() {
+        guard let nid = router.pendingNID,
+              let recall = store.recalls.first(where: { $0.nid == nid }) else { return }
+        router.feedPath = [recall]
+        router.pendingNID = nil
     }
 
     private var content: some View {
