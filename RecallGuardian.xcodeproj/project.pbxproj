@@ -11,6 +11,7 @@
 		1C8B51E8EFB9BF35A2F57CFD /* RecallRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02344B4AEA32EA6D8B1420D1 /* RecallRow.swift */; };
 		20E25A01952695B492D4D448 /* UpdateChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E4207B871D097DB2926D75 /* UpdateChecker.swift */; };
 		2717AB504D7E2C6D22496E56 /* UpdateSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1E5A0D346A40DF14D4B07A /* UpdateSheet.swift */; };
+		3E50815DE77A0DC1F5A3A7F7 /* RecallInsights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1B1D91BE4521ECAE2FB2DF /* RecallInsights.swift */; };
 		569ABF43DA1BB0C4685BE634 /* AlertPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A5206747DB46FBE8442887 /* AlertPreferences.swift */; };
 		6CE0736E0A3E80E1562A1F1F /* RecallGuardianApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD918E38274CFDAC36AE792 /* RecallGuardianApp.swift */; };
 		6EB718E4A4C96CD040BDBB39 /* RecallClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06581CD2D9BCB494BB07E67C /* RecallClassifier.swift */; };
@@ -23,6 +24,7 @@
 		C2026942F3682306808712FE /* BackgroundRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC3E62F6BDB5D3D737D4CF4 /* BackgroundRefresh.swift */; };
 		CADCC41266335705D7F87915 /* WatchMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B3E8B46F65C54D39F8556 /* WatchMatcher.swift */; };
 		D1646B3E212DEBE4E1443A07 /* Watchlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF14B9D24F416CDFC59909A /* Watchlist.swift */; };
+		DDD2F6C46C54BD62E1CD5D92 /* RecallExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536B09E3A71C079FC3D2261C /* RecallExtras.swift */; };
 		EF2EB2F40929AC8D8DE133FD /* GuardianView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F575317C0C92DF11796CAF /* GuardianView.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,8 +35,10 @@
 		23A5206747DB46FBE8442887 /* AlertPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferences.swift; sourceTree = "<group>"; };
 		2A97E0C91E059A376053785B /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		41E4207B871D097DB2926D75 /* UpdateChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChecker.swift; sourceTree = "<group>"; };
+		536B09E3A71C079FC3D2261C /* RecallExtras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecallExtras.swift; sourceTree = "<group>"; };
 		56A33CBF929FBBAD9FED245B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AC3E62F6BDB5D3D737D4CF4 /* BackgroundRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundRefresh.swift; sourceTree = "<group>"; };
+		5E1B1D91BE4521ECAE2FB2DF /* RecallInsights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecallInsights.swift; sourceTree = "<group>"; };
 		5E9B3E8B46F65C54D39F8556 /* WatchMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchMatcher.swift; sourceTree = "<group>"; };
 		6CC1716626F5389C44176777 /* Recall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recall.swift; sourceTree = "<group>"; };
 		723FD14B267AA5C94E9CB0C8 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 				5AC3E62F6BDB5D3D737D4CF4 /* BackgroundRefresh.swift */,
 				723FD14B267AA5C94E9CB0C8 /* NotificationManager.swift */,
 				06581CD2D9BCB494BB07E67C /* RecallClassifier.swift */,
+				536B09E3A71C079FC3D2261C /* RecallExtras.swift */,
+				5E1B1D91BE4521ECAE2FB2DF /* RecallInsights.swift */,
 				035460651763DA1844DEBC26 /* RecallStore.swift */,
 				41E4207B871D097DB2926D75 /* UpdateChecker.swift */,
 				5E9B3E8B46F65C54D39F8556 /* WatchMatcher.swift */,
@@ -187,7 +193,9 @@
 				16629EC40F5AA5C1D9A07942 /* Recall.swift in Sources */,
 				6EB718E4A4C96CD040BDBB39 /* RecallClassifier.swift in Sources */,
 				733854F2F3E51948759E4308 /* RecallDetailView.swift in Sources */,
+				DDD2F6C46C54BD62E1CD5D92 /* RecallExtras.swift in Sources */,
 				6CE0736E0A3E80E1562A1F1F /* RecallGuardianApp.swift in Sources */,
+				3E50815DE77A0DC1F5A3A7F7 /* RecallInsights.swift in Sources */,
 				1C8B51E8EFB9BF35A2F57CFD /* RecallRow.swift in Sources */,
 				B20A86AD16C2A87E898A65F0 /* RecallStore.swift in Sources */,
 				775C91921CEC089F53E2B068 /* Theme.swift in Sources */,

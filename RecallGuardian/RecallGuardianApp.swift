@@ -38,6 +38,7 @@ struct RootView: View {
                 .tabItem { Label("Guardian", systemImage: "shield") }
         }
         .tint(Theme.brand)
+        .preferredColorScheme(.light)
         .onChange(of: scenePhase) { _, phase in
             // Line up the next background check whenever we leave the foreground.
             if phase == .background { BackgroundRefresh.schedule() }
