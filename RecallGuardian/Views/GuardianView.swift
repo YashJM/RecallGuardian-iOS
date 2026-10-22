@@ -8,6 +8,7 @@ struct GuardianView: View {
     @Environment(Watchlist.self) private var watchlist
     @Environment(RecallStore.self) private var store
     @Environment(AlertPreferences.self) private var prefs
+    @Environment(UpdateChecker.self) private var updates
     @State private var brandText = ""
     @State private var notifStatus: UNAuthorizationStatus = .notDetermined
 
@@ -20,6 +21,9 @@ struct GuardianView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
+                    if let update = updates.available, !updates.isPresenting {
+                        UpdateAvailableRow(update: update)
+                    }
                     intro
                     alertsCard
                     brandsSection

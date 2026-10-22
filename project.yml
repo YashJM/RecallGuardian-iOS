@@ -34,6 +34,8 @@ targets:
       path: Supporting/Info.plist
       properties:
         CFBundleDisplayName: RecallGuardian
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         UIBackgroundModes: [fetch, remote-notification]
         BGTaskSchedulerPermittedIdentifiers: [ca.recallguardian.app.refresh]
         NSCameraUsageDescription: "Scan a product barcode to add it to your Guardian watchlist."

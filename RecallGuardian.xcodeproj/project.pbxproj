@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		16629EC40F5AA5C1D9A07942 /* Recall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1716626F5389C44176777 /* Recall.swift */; };
 		1C8B51E8EFB9BF35A2F57CFD /* RecallRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02344B4AEA32EA6D8B1420D1 /* RecallRow.swift */; };
+		20E25A01952695B492D4D448 /* UpdateChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E4207B871D097DB2926D75 /* UpdateChecker.swift */; };
+		2717AB504D7E2C6D22496E56 /* UpdateSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1E5A0D346A40DF14D4B07A /* UpdateSheet.swift */; };
 		569ABF43DA1BB0C4685BE634 /* AlertPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A5206747DB46FBE8442887 /* AlertPreferences.swift */; };
 		6CE0736E0A3E80E1562A1F1F /* RecallGuardianApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD918E38274CFDAC36AE792 /* RecallGuardianApp.swift */; };
 		6EB718E4A4C96CD040BDBB39 /* RecallClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06581CD2D9BCB494BB07E67C /* RecallClassifier.swift */; };
@@ -30,6 +32,7 @@
 		06581CD2D9BCB494BB07E67C /* RecallClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecallClassifier.swift; sourceTree = "<group>"; };
 		23A5206747DB46FBE8442887 /* AlertPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferences.swift; sourceTree = "<group>"; };
 		2A97E0C91E059A376053785B /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		41E4207B871D097DB2926D75 /* UpdateChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChecker.swift; sourceTree = "<group>"; };
 		56A33CBF929FBBAD9FED245B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AC3E62F6BDB5D3D737D4CF4 /* BackgroundRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundRefresh.swift; sourceTree = "<group>"; };
 		5E9B3E8B46F65C54D39F8556 /* WatchMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchMatcher.swift; sourceTree = "<group>"; };
@@ -40,6 +43,7 @@
 		8DD918E38274CFDAC36AE792 /* RecallGuardianApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecallGuardianApp.swift; sourceTree = "<group>"; };
 		A0F575317C0C92DF11796CAF /* GuardianView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianView.swift; sourceTree = "<group>"; };
 		CBF14B9D24F416CDFC59909A /* Watchlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watchlist.swift; sourceTree = "<group>"; };
+		EB1E5A0D346A40DF14D4B07A /* UpdateSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSheet.swift; sourceTree = "<group>"; };
 		FB542912F1F08342BBDAB98B /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +86,7 @@
 				A0F575317C0C92DF11796CAF /* GuardianView.swift */,
 				7D66B0599FA2C0ADC0353AB0 /* RecallDetailView.swift */,
 				02344B4AEA32EA6D8B1420D1 /* RecallRow.swift */,
+				EB1E5A0D346A40DF14D4B07A /* UpdateSheet.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -109,6 +114,7 @@
 				723FD14B267AA5C94E9CB0C8 /* NotificationManager.swift */,
 				06581CD2D9BCB494BB07E67C /* RecallClassifier.swift */,
 				035460651763DA1844DEBC26 /* RecallStore.swift */,
+				41E4207B871D097DB2926D75 /* UpdateChecker.swift */,
 				5E9B3E8B46F65C54D39F8556 /* WatchMatcher.swift */,
 			);
 			path = Services;
@@ -185,6 +191,8 @@
 				1C8B51E8EFB9BF35A2F57CFD /* RecallRow.swift in Sources */,
 				B20A86AD16C2A87E898A65F0 /* RecallStore.swift in Sources */,
 				775C91921CEC089F53E2B068 /* Theme.swift in Sources */,
+				20E25A01952695B492D4D448 /* UpdateChecker.swift in Sources */,
+				2717AB504D7E2C6D22496E56 /* UpdateSheet.swift in Sources */,
 				CADCC41266335705D7F87915 /* WatchMatcher.swift in Sources */,
 				D1646B3E212DEBE4E1443A07 /* Watchlist.swift in Sources */,
 			);

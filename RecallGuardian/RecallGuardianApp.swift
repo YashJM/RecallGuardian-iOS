@@ -6,6 +6,7 @@ struct RecallGuardianApp: App {
     @State private var store = RecallStore()
     @State private var watchlist = Watchlist()
     @State private var prefs = AlertPreferences()
+    @State private var updates = UpdateChecker()
 
     var body: some Scene {
         WindowGroup {
@@ -13,6 +14,7 @@ struct RecallGuardianApp: App {
                 .environment(store)
                 .environment(watchlist)
                 .environment(prefs)
+                .environment(updates)
         }
     }
 }
@@ -21,6 +23,8 @@ struct RootView: View {
     @Environment(\.scenePhase) private var scenePhase
     @Environment(Watchlist.self) private var watchlist
     @Environment(AlertPreferences.self) private var prefs
+    @Environment(UpdateChecker.self) private var updates
+    @Environment(\.openURL) private var openURL
     @State private var tab = Snapshot.tab
 
     var body: some View {
@@ -37,8 +41,22 @@ struct RootView: View {
         .onChange(of: scenePhase) { _, phase in
             // Line up the next background check whenever we leave the foreground.
             if phase == .background { BackgroundRefresh.schedule() }
+            if phase == .active { Task { await updates.checkIfNeeded() } }
+        }
+        .sheet(isPresented: Binding(get: { updates.isPresenting }, set: { if !$0 { updates.dismiss() } })) {
+            if let update = updates.available {
+                UpdateSheet(update: update) {
+                    openURL(update.storeURL)
+                    updates.dismiss()
+                } onLater: {
+                    updates.dismiss()
+                }
+                .presentationDetents([.medium])
+                .presentationDragIndicator(.visible)
+            }
         }
         .task {
+            await updates.checkIfNeeded()
             // Snapshot/demo seeding — only when launched with the env flags, never in production.
             if Snapshot.seed {
                 if watchlist.items.isEmpty {
@@ -59,4 +77,6 @@ enum Snapshot {
     static var tab: Int { env["RG_TAB"] == "guardian" ? 1 : 0 }
     static var seed: Bool { env["RG_SEED"] == "1" }
     static var openDetail: Bool { env["RG_DETAIL"] == "1" }
+    /// Pretend a newer version is on the App Store (debug builds only).
+    static var fakeUpdate: Bool { env["RG_FAKE_UPDATE"] == "1" }
 }
