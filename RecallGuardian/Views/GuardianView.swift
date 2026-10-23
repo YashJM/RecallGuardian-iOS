@@ -13,9 +13,21 @@ struct GuardianView: View {
     @State private var notifStatus: UNAuthorizationStatus = .notDetermined
     @State private var showScanner = false
 
+    private static let matchLimit = 40
+
+    /// Top matches only — the feed is already sorted by priority, so we stop at
+    /// the first N instead of scanning/rendering all ~20k recalls (which froze
+    /// the UI when a whole category was watched).
     private var matches: [(recall: Recall, item: WatchItem)] {
-        WatchMatcher.matches(in: store.feed, items: watchlist.items)
-            .map { (recall: $0.0, item: $0.1) }
+        guard !watchlist.items.isEmpty else { return [] }
+        var out: [(recall: Recall, item: WatchItem)] = []
+        for recall in store.feed {
+            if let item = WatchMatcher.match(recall, items: watchlist.items) {
+                out.append((recall: recall, item: item))
+                if out.count >= Self.matchLimit { break }
+            }
+        }
+        return out
     }
 
     var body: some View {
