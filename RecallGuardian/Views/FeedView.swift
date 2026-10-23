@@ -1,18 +1,17 @@
 import SwiftUI
 
-/// The ranked feed — the app's home. Opens on Food, searchable across
-/// everything, with one-tap ingredient checks. Mirrors the web homepage.
+/// The ranked feed. Native search + ingredient suggestions, clean filter chips,
+/// and scannable cards. Opens on Food.
 struct FeedView: View {
     @Environment(RecallStore.self) private var store
     @Environment(AppRouter.self) private var router
-    @State private var filter: RecallGroup? = .food   // nil == All
+    @State private var filter: RecallGroup? = .food
     @State private var query = ""
 
     private let limit = 200
     private let quick = ["Milk", "Eggs", "Cheese", "Peanut", "Wheat", "Beef", "Chicken", "Romaine"]
 
     private var base: [Recall] { Array(store.feed.prefix(limit)) }
-
     private var searching: Bool { !query.trimmingCharacters(in: .whitespaces).isEmpty }
 
     private var shown: [Recall] {
@@ -35,7 +34,7 @@ struct FeedView: View {
             Group {
                 switch store.state {
                 case .loading, .idle:
-                    ProgressView("Loading recalls…")
+                    ProgressView().controlSize(.large)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 case .failed(let message):
                     ErrorView(message: message) { Task { await store.load(force: true) } }
@@ -48,9 +47,17 @@ struct FeedView: View {
             .navigationDestination(for: Recall.self) { RecallDetailView(recall: $0) }
         }
         .tint(Theme.brand)
+        .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always),
+                    prompt: "Product, brand or ingredient")
+        .searchSuggestions {
+            if !searching {
+                ForEach(quick, id: \.self) { word in
+                    Label(word, systemImage: "magnifyingglass").searchCompletion(word)
+                }
+            }
+        }
         .task {
             await store.load()
-            // Simulate a notification deep-link through the real routing path.
             if Snapshot.openDetail, router.pendingNID == nil { router.pendingNID = store.feed.first?.nid }
             resolvePending()
         }
@@ -58,84 +65,38 @@ struct FeedView: View {
         .onChange(of: store.state) { _, _ in resolvePending() }
     }
 
-    /// Push the recall a tapped notification asked for, once the feed has loaded.
-    private func resolvePending() {
-        guard let nid = router.pendingNID,
-              let recall = store.recalls.first(where: { $0.nid == nid }) else { return }
-        router.feedPath = [recall]
-        router.pendingNID = nil
-    }
-
     private var content: some View {
         ScrollView {
-            VStack(spacing: 14) {
-                searchBar
-                quickChecks
-                if !searching { filterChips }
+            LazyVStack(spacing: 12) {
                 if searching {
                     HStack {
-                        Text("\(shown.count) result\(shown.count == 1 ? "" : "s") for “\(query.trimmingCharacters(in: .whitespaces))”")
-                            .font(.display(13, .semibold)).foregroundStyle(Theme.muted)
+                        Text("\(shown.count) result\(shown.count == 1 ? "" : "s")")
+                            .font(.subheadline.weight(.semibold)).foregroundStyle(Theme.muted)
                         Spacer()
                     }
+                    .padding(.horizontal, 16).padding(.top, 6)
+                } else {
+                    filterBar
                 }
 
-                LazyVStack(spacing: 10) {
-                    ForEach(shown) { recall in
-                        NavigationLink(value: recall) { RecallRow(recall: recall) }
-                            .buttonStyle(.plain)
-                    }
-                    if shown.isEmpty {
-                        Text(searching
-                             ? "No current recalls match “\(query.trimmingCharacters(in: .whitespaces))”. That's good news — check the official site for older recalls."
-                             : "No recalls in this category right now.")
-                            .font(.system(size: 14)).foregroundStyle(Theme.muted)
-                            .multilineTextAlignment(.center)
-                            .frame(maxWidth: .infinity).padding(.top, 40)
-                    }
+                ForEach(shown) { recall in
+                    NavigationLink(value: recall) { RecallRow(recall: recall) }
+                        .buttonStyle(.plain)
+                        .padding(.horizontal, 16)
                 }
+
+                if shown.isEmpty {
+                    emptyState.padding(.horizontal, 24).padding(.top, 40)
+                }
+                Color.clear.frame(height: 8)
             }
-            .padding(16)
+            .padding(.top, 4)
         }
         .background(Theme.paper)
         .refreshable { await store.load(force: true) }
     }
 
-    private var searchBar: some View {
-        HStack(spacing: 9) {
-            Image(systemName: "magnifyingglass").foregroundStyle(Theme.muted)
-            TextField("Check a product, brand or ingredient", text: $query)
-                .autocorrectionDisabled()
-                .textInputAutocapitalization(.never)
-            if searching {
-                Button { query = "" } label: {
-                    Image(systemName: "xmark.circle.fill").foregroundStyle(Theme.muted)
-                }
-            }
-        }
-        .padding(12)
-        .background(Theme.surface, in: RoundedRectangle(cornerRadius: 11, style: .continuous))
-        .overlay(RoundedRectangle(cornerRadius: 11, style: .continuous).stroke(Theme.line, lineWidth: 1.5))
-    }
-
-    private var quickChecks: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 8) {
-                Text("Quick check").font(.display(12, .semibold)).foregroundStyle(Theme.muted)
-                ForEach(quick, id: \.self) { word in
-                    Button { query = word } label: {
-                        Text(word).font(.display(13, .semibold)).foregroundStyle(Theme.ink)
-                            .padding(.horizontal, 12).padding(.vertical, 6)
-                            .background(Theme.surface, in: Capsule())
-                            .overlay(Capsule().stroke(Theme.line, lineWidth: 1))
-                    }
-                }
-            }
-            .padding(.vertical, 1)
-        }
-    }
-
-    private var filterChips: some View {
+    private var filterBar: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
                 chip(label: "All", group: nil, count: base.count)
@@ -144,28 +105,53 @@ struct FeedView: View {
                     if c > 0 { chip(label: g.label, group: g, count: c) }
                 }
             }
-            .padding(.vertical, 1)
+            .padding(.horizontal, 16).padding(.vertical, 10)
         }
+        .background(Theme.paper)
     }
 
     private func chip(label: String, group: RecallGroup?, count: Int) -> some View {
         let on = filter == group
-        return Button { filter = group } label: {
+        return Button {
+            withAnimation(.snappy(duration: 0.2)) { filter = group }
+        } label: {
             HStack(spacing: 6) {
                 if let group {
-                    Image(systemName: Theme.symbol(group))
-                        .font(.system(size: 11, weight: .bold))
-                        .foregroundStyle(on ? Theme.paper : Theme.category(group))
+                    Image(systemName: Theme.symbol(group)).font(.system(size: 11, weight: .bold))
                 }
-                Text(label).font(.display(14, .semibold))
-                Text("\(count)").font(.display(13, .medium)).opacity(0.6).monospacedDigit()
+                Text(label).font(.system(size: 14, weight: .semibold))
+                Text("\(count)").font(.system(size: 13, weight: .medium)).opacity(0.55).monospacedDigit()
             }
-            .foregroundStyle(on ? Theme.paper : Theme.muted)
+            .foregroundStyle(on ? .white : Theme.ink)
             .padding(.horizontal, 13).padding(.vertical, 8)
-            .background(on ? Theme.navy : Theme.surface, in: Capsule())
-            .overlay(Capsule().stroke(Theme.line, lineWidth: on ? 0 : 1))
+            .background(on ? Theme.ink : Theme.surface, in: Capsule())
+            .shadow(color: .black.opacity(on ? 0 : 0.04), radius: 4, y: 1)
         }
         .buttonStyle(.plain)
+    }
+
+    private var emptyState: some View {
+        VStack(spacing: 10) {
+            Image(systemName: searching ? "checkmark.shield" : "tray")
+                .font(.system(size: 34)).foregroundStyle(Theme.severity(.standard))
+            Text(searching ? "No current recalls match “\(query.trimmingCharacters(in: .whitespaces))”"
+                 : "Nothing in this category right now")
+                .font(.system(size: 15, weight: .semibold)).foregroundStyle(Theme.ink)
+                .multilineTextAlignment(.center)
+            if searching {
+                Text("That’s good news — check the official site for older recalls.")
+                    .font(.system(size: 13)).foregroundStyle(Theme.muted)
+                    .multilineTextAlignment(.center)
+            }
+        }
+        .frame(maxWidth: .infinity)
+    }
+
+    private func resolvePending() {
+        guard let nid = router.pendingNID,
+              let recall = store.recalls.first(where: { $0.nid == nid }) else { return }
+        router.feedPath = [recall]
+        router.pendingNID = nil
     }
 }
 
@@ -174,11 +160,9 @@ struct ErrorView: View {
     let retry: () -> Void
     var body: some View {
         VStack(spacing: 14) {
-            Text("Couldn't load recalls").font(.display(18, .bold)).foregroundStyle(Theme.ink)
-            Text(message).font(.system(size: 14)).foregroundStyle(Theme.muted)
-                .multilineTextAlignment(.center)
-            Button("Try again", action: retry)
-                .buttonStyle(.borderedProminent).tint(Theme.brand)
+            Text("Couldn't load recalls").font(.system(size: 18, weight: .bold)).foregroundStyle(Theme.ink)
+            Text(message).font(.system(size: 14)).foregroundStyle(Theme.muted).multilineTextAlignment(.center)
+            Button("Try again", action: retry).buttonStyle(.borderedProminent).tint(Theme.brand)
         }
         .padding(32).frame(maxWidth: .infinity, maxHeight: .infinity)
     }
