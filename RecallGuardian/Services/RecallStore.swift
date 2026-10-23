@@ -18,10 +18,59 @@ final class RecallStore {
     private(set) var recalls: [Recall] = []
     private(set) var state: LoadState = .idle
 
-    /// The feed does not provide explicit archive timestamps we need, so we
-    /// surface a capped, non-archived, ranked slice on the main feed.
+    /// Recalls we've confirmed have a product photo (enriched for the top slice).
+    private(set) var photoNIDs: Set<String> = []
+    /// The UI feed: non-archived, protection-ranked, with a within-tier nudge
+    /// for recalls that have a photo (never crossing tiers).
+    private(set) var displayFeed: [Recall] = []
+
+    /// Non-archived recalls in pure protection order (used for matching).
     var feed: [Recall] {
         recalls.filter { !$0.archived }
+    }
+
+    func hasPhoto(_ recall: Recall) -> Bool { photoNIDs.contains(recall.nid) }
+
+    /// Re-order the feed: tier first (protection), then photo-first within a
+    /// tier, then the original score order.
+    private func rebuildDisplay() {
+        displayFeed = feed.enumerated().sorted { a, b in
+            if a.element.tier.rank != b.element.tier.rank {
+                return a.element.tier.rank < b.element.tier.rank
+            }
+            let ap = photoNIDs.contains(a.element.nid), bp = photoNIDs.contains(b.element.nid)
+            if ap != bp { return ap && !bp }
+            return a.offset < b.offset
+        }.map(\.element)
+    }
+
+    /// Fetch photo presence for the top slice only, then re-sort. Bounded and
+    /// concurrency-limited so it stays fast.
+    private func enrichTopPhotos(_ n: Int = 30) async {
+        let top = Array(displayFeed.prefix(n))
+        guard !top.isEmpty else { return }
+        var found: Set<String> = []
+        await withTaskGroup(of: (String, Bool).self) { group in
+            var inFlight = 0
+            var index = 0
+            func submit() {
+                guard index < top.count else { return }
+                let recall = top[index]; index += 1; inFlight += 1
+                group.addTask {
+                    let extras = await RecallExtrasService.shared.extras(for: recall)
+                    return (recall.nid, extras.imageURL != nil)
+                }
+            }
+            for _ in 0..<min(6, top.count) { submit() }
+            for await (nid, has) in group {
+                if has { found.insert(nid) }
+                inFlight -= 1
+                submit()
+            }
+        }
+        guard !found.isEmpty else { return }
+        photoNIDs.formUnion(found)
+        rebuildDisplay()
     }
 
     func counts(in list: [Recall]) -> [RecallGroup: Int] {
@@ -43,7 +92,10 @@ final class RecallStore {
                     return ($0.lastUpdated ?? .distantPast) > ($1.lastUpdated ?? .distantPast)
                 }
             recalls = parsed
+            rebuildDisplay()
             state = .loaded
+            // Enrich photos for the top slice, then re-sort (progressive).
+            Task { await enrichTopPhotos() }
         } catch {
             state = .failed(error.localizedDescription)
         }

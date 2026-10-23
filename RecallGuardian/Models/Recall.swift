@@ -18,6 +18,15 @@ enum Tier: String, Codable, Sendable {
         case .standard: 1
         }
     }
+    /// 0 = most urgent. The dominant sort key, so a photo can never lift a lower
+    /// tier above a higher one.
+    var rank: Int {
+        switch self {
+        case .critical: 0
+        case .high: 1
+        case .standard: 2
+        }
+    }
 }
 
 /// The seven household groups used for filtering (mirrors the web app).
