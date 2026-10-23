@@ -20,18 +20,18 @@ let ctx = NSGraphicsContext.current!.cgContext
 func P(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * Nf, y: y * Nf) }
 
 let shield = CGMutablePath()
-shield.move(to: P(0.50, 0.88))
-shield.addLine(to: P(0.86, 0.77))
-shield.addLine(to: P(0.86, 0.47))
-shield.addQuadCurve(to: P(0.50, 0.10), control: P(0.86, 0.24))
-shield.addQuadCurve(to: P(0.14, 0.47), control: P(0.14, 0.24))
-shield.addLine(to: P(0.14, 0.77))
+shield.move(to: P(0.50, 0.84))
+shield.addLine(to: P(0.81, 0.74))
+shield.addLine(to: P(0.81, 0.46))
+shield.addQuadCurve(to: P(0.50, 0.10), control: P(0.81, 0.28))
+shield.addQuadCurve(to: P(0.19, 0.46), control: P(0.19, 0.28))
+shield.addLine(to: P(0.19, 0.74))
 shield.closeSubpath()
 ctx.addPath(shield)
 ctx.setFillColor(cg(0xC0, 0x1C, 0x2E))
 ctx.fillPath()
 
-let cfg = NSImage.SymbolConfiguration(pointSize: 0.44 * Nf, weight: .semibold)
+let cfg = NSImage.SymbolConfiguration(pointSize: 0.40 * Nf, weight: .semibold)
 if let base = NSImage(systemSymbolName: "bell.fill", accessibilityDescription: nil)?.withSymbolConfiguration(cfg) {
     let sz = base.size
     let white = NSImage(size: sz)
@@ -40,7 +40,7 @@ if let base = NSImage(systemSymbolName: "bell.fill", accessibilityDescription: n
     NSColor.white.set()
     NSRect(origin: .zero, size: sz).fill(using: .sourceAtop)
     white.unlockFocus()
-    white.draw(in: NSRect(x: Nf*0.5 - sz.width/2, y: Nf*0.52 - sz.height/2, width: sz.width, height: sz.height))
+    white.draw(in: NSRect(x: Nf*0.5 - sz.width/2, y: Nf*0.53 - sz.height/2, width: sz.width, height: sz.height))
 }
 
 NSGraphicsContext.restoreGraphicsState()
