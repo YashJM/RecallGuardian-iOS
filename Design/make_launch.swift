@@ -27,9 +27,12 @@ shield.addQuadCurve(to: P(0.50, 0.10), control: P(0.81, 0.28))
 shield.addQuadCurve(to: P(0.19, 0.46), control: P(0.19, 0.28))
 shield.addLine(to: P(0.19, 0.74))
 shield.closeSubpath()
+ctx.setLineJoin(.round)
 ctx.addPath(shield)
 ctx.setFillColor(cg(0xC0, 0x1C, 0x2E))
-ctx.fillPath()
+ctx.setStrokeColor(cg(0xC0, 0x1C, 0x2E))
+ctx.setLineWidth(0.09 * Nf)
+ctx.drawPath(using: .fillStroke)
 
 let cfg = NSImage.SymbolConfiguration(pointSize: 0.40 * Nf, weight: .semibold)
 if let base = NSImage(systemSymbolName: "bell.fill", accessibilityDescription: nil)?.withSymbolConfiguration(cfg) {

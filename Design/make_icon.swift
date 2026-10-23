@@ -33,11 +33,18 @@ shield.addQuadCurve(to: P(0.19, 0.46), control: P(0.19, 0.28))
 shield.addLine(to: P(0.19, 0.74))
 shield.closeSubpath()
 
+// Rounded shield — fill + round-join stroke in one pass softens every corner.
 ctx.saveGState()
 ctx.setShadow(offset: CGSize(width: 0, height: -18), blur: 38, color: cg(0x14, 0x27, 0x3B, 0.28))
-ctx.addPath(shield); ctx.setFillColor(cg(0xC0, 0x1C, 0x2E)); ctx.fillPath()
+ctx.setLineJoin(.round)
+ctx.addPath(shield)
+ctx.setFillColor(cg(0xC0, 0x1C, 0x2E))
+ctx.setStrokeColor(cg(0xC0, 0x1C, 0x2E))
+ctx.setLineWidth(92)
+ctx.drawPath(using: .fillStroke)
 ctx.restoreGState()
 
+// Subtle depth inside.
 ctx.saveGState()
 ctx.addPath(shield); ctx.clip()
 let red = CGGradient(colorsSpace: cs, colors: [cg(0xCE, 0x24, 0x38), cg(0xA6, 0x16, 0x28)] as CFArray, locations: [0, 1])!
