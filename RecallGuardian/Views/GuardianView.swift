@@ -54,7 +54,14 @@ struct GuardianView: View {
         .task {
             await store.load()
             notifStatus = await NotificationManager.authorizationStatus()
+            // Re-assert push registration on launch (the APNs token can rotate).
+            if prefs.enabled {
+                PushService.shared.registerForRemoteNotifications()
+                syncPush()
+            }
         }
+        .onChange(of: prefs.threshold) { _, _ in syncPush() }
+        .onChange(of: watchlist.categories) { _, _ in syncPush() }
     }
 
     // MARK: Sections
@@ -228,14 +235,30 @@ struct GuardianView: View {
 
     private func setAlerts(on: Bool) {
         prefs.enabled = on
-        guard on else { return }
+        guard on else {
+            syncPush() // tell the backend to stop sending to this device
+            return
+        }
         Task {
             _ = await NotificationManager.requestAuthorization()
             notifStatus = await NotificationManager.authorizationStatus()
+            // Register for server push (fast category alerts) …
+            PushService.shared.registerForRemoteNotifications()
+            syncPush()
+            // … and keep the on-device background check (brand matches + fallback).
             // Don't blast the existing backlog — treat everything that already
             // matches as seen, so only genuinely new recalls notify.
             BackgroundRefresh.primeSeen(with: store.recalls, items: watchlist.items)
             BackgroundRefresh.schedule()
         }
+    }
+
+    /// Push the current category + severity preferences to the alerts backend.
+    private func syncPush() {
+        PushService.shared.updatePreferences(
+            categories: Array(watchlist.categories),
+            threshold: prefs.threshold.rawValue,
+            enabled: prefs.enabled
+        )
     }
 }

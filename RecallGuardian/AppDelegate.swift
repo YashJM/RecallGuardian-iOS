@@ -38,14 +38,15 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
         let token = deviceToken.map { String(format: "%02x", $0) }.joined()
-        // TODO (APNs V2.1): send `token` to the notification backend.
-        _ = token
+        Task { @MainActor in PushService.shared.setToken(token) }
     }
 
     func application(
         _ application: UIApplication,
         didFailToRegisterForRemoteNotificationsWithError error: Error
     ) {
-        // TODO (APNs V2.1): log registration failure.
+        // APNs registration failed (e.g. no network, or the Simulator which
+        // can't get a token). The on-device background refresh still delivers
+        // local match alerts, so this is non-fatal.
     }
 }

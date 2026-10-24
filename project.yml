@@ -46,7 +46,10 @@ targets:
     entitlements:
       path: Supporting/RecallGuardian.entitlements
       properties:
-        aps-environment: development
+        # production = TestFlight/App Store (the launch path). For testing push
+        # on a dev-signed build on a physical device, switch to `development`
+        # and set the backend's APNS_ENV=sandbox to match.
+        aps-environment: production
         com.apple.developer.usernotifications.time-sensitive: true
         com.apple.developer.associated-domains:
           - applinks:recallguardian.ca
