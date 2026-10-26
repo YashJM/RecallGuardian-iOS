@@ -27,8 +27,13 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
         _ center: UNUserNotificationCenter,
         didReceive response: UNNotificationResponse
     ) async {
-        guard let nid = response.notification.request.content.userInfo["nid"] as? String else { return }
-        await MainActor.run { AppRouter.shared.openRecall(nid: nid) }
+        let info = response.notification.request.content.userInfo
+        if let nid = info["nid"] as? String {
+            await MainActor.run { AppRouter.shared.openRecall(nid: nid) }
+        } else if info["digest"] != nil {
+            // A "N new recalls" summary — open the feed to review them.
+            await MainActor.run { AppRouter.shared.openFeed() }
+        }
     }
 
     // MARK: Remote notifications (APNs) — wired for later; no-ops until push is enabled.

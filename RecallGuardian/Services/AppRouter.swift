@@ -20,4 +20,9 @@ final class AppRouter {
         tab = 0
         pendingNID = nid
     }
+
+    /// Called when a digest ("N new recalls") notification is tapped.
+    func openFeed() {
+        tab = 0
+    }
 }

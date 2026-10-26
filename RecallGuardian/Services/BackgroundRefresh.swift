@@ -8,6 +8,9 @@ enum BackgroundRefresh {
     static let taskId = "ca.recallguardian.app.refresh"
     private static let seenKey = "notifiedNIDs.v1"
     private static let watchKey = "watchlist.v1"
+    // At or above this many new matches in one run, send one summary instead
+    // of a flood of individual notifications.
+    private static let digestThreshold = 3
 
     /// Call once at launch (from the app delegate) before the app finishes launching.
     static func register() {
@@ -46,10 +49,21 @@ enum BackgroundRefresh {
         guard !recalls.isEmpty else { return }
 
         var seen = loadSeen()
+        var newMatches: [(recall: Recall, item: WatchItem)] = []
         for (recall, item) in WatchMatcher.matches(in: recalls, items: items)
         where !seen.contains(recall.nid) && prefs.threshold.allows(recall.tier) {
-            NotificationManager.notify(recall: recall, matched: item)
+            newMatches.append((recall, item))
             seen.insert(recall.nid)
+        }
+
+        // Coalesce a batch into one summary so a background run that finds many
+        // new recalls at once doesn't fire a flood of notifications.
+        if newMatches.count >= Self.digestThreshold {
+            NotificationManager.notifySummary(count: newMatches.count)
+        } else {
+            for (recall, item) in newMatches {
+                NotificationManager.notify(recall: recall, matched: item)
+            }
         }
         saveSeen(seen)
     }
